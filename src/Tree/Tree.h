@@ -3,7 +3,7 @@
 #include <map>
 #include <memory>
 
-#include "../File/File.h"
+#include "../FrequencyDictionary/FrequencyDictionary.h"
 #include "../Queue/Queue.h"
 
 class Queue;
@@ -26,13 +26,13 @@ public:
  */
 class Tree {
 public:
-    File file;
+    FrequencyDictionary frequencyDictionary;
     std::shared_ptr<Queue> queue = std::make_shared<Queue>();
     std::shared_ptr<NodeTree> head = nullptr;
     std::map<char, std::string> symbolsCode;
 
 public:
-    explicit Tree(File &file) : file(file){};
+    explicit Tree(FrequencyDictionary &frequencyDictionary) : frequencyDictionary(frequencyDictionary){};
     std::map<char, std::string> getSymbolsCode();
     void printSymbolsCode();
 

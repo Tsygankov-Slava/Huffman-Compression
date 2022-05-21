@@ -1,27 +1,32 @@
-#include "File.h"
+#include "FrequencyDictionary.h"
 
-bool File::sortFunc(const std::pair<char, int> &a, const std::pair<char, int> &b) {
-    return a.second < b.second;
-}
-
-bool File::readFile() {
+bool FrequencyDictionary::readData() {
     std::ifstream file(pathIn);
     if (!file) {
         std::cout << "Файл " << pathIn << " не найден. Посмотрите справочную информация (обратитесь с флагом --help).\n";
-        return false;
+        throw false;
     }
     std::string line;
     while (getline(file, line)) {
+        lines.push_back(line);
+    }
+    return true;
+}
+
+void FrequencyDictionary::buildDictionary() {
+    for (auto const &line : lines) {
         for (auto const &symbol : line) {
             frequencyDictionary[symbol]++;
         }
     }
     frequencyDictionarySorted = {frequencyDictionary.begin(), frequencyDictionary.end()};
-    std::sort(frequencyDictionarySorted.begin(), frequencyDictionarySorted.end(), sortFunc);
-    return true;
+    std::sort(frequencyDictionarySorted.begin(), frequencyDictionarySorted.end(),
+              [](const std::pair<char, int> &a, const std::pair<char, int> &b) {
+                  return a.second < b.second;
+              });
 }
 
-void File::printFrequencyDictionary() {
+void FrequencyDictionary::print() {
     for (const auto &i : frequencyDictionarySorted) {
         std::cout << i.first << " -> " << i.second << "\n";
     }

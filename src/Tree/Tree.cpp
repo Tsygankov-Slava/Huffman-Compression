@@ -4,7 +4,7 @@
  * Функция fillQueue заполняет первоначальную очередь из узлов дерева
  */
 void Tree::fillQueue() {
-    for (const auto &map : file.frequencyDictionarySorted) {
+    for (const auto &map : frequencyDictionary.frequencyDictionarySorted) {
         std::shared_ptr<NodeTree> node = std::make_shared<NodeTree>(map);
         queue->push(node);
     }
@@ -50,6 +50,5 @@ std::map<char, std::string> Tree::getSymbolsCode() {
     fillQueue();
     createNode();
     createSymbolsCode(head);
-    printSymbolsCode();
     return symbolsCode;
 }

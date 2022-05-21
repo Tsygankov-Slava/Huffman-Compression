@@ -1,5 +1,5 @@
 #include "CLI/CLI.h"
-#include "File/File.h"
+#include "FrequencyDictionary/FrequencyDictionary.h"
 #include "Tree/Tree.h"
 
 int main(int argc, char *argv[]) {
@@ -17,14 +17,16 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    auto file = File(cli.flags.at("--in").value, cli.flags.at("--out").value);
-    file.readFile();
-    file.printFrequencyDictionary();
+    try {
+        auto frequencyDictionary = FrequencyDictionary(cli.flags.at("--in").value, cli.flags.at("--out").value);
+        frequencyDictionary.print();
+        std::cout << "-------\n";
+        auto tree = Tree(frequencyDictionary);
+        std::map<char, std::string> symbolsCode = tree.getSymbolsCode();
+        tree.printSymbolsCode();
+    } catch (const bool &ex) {
+        return 1;
+    };
 
-    std::cout << "-------\n";
-
-    auto tree = Tree(file);
-    std::map<char, std::string> symbolsCode = tree.getSymbolsCode();
-    tree.printSymbolsCode();
     return 0;
 }
