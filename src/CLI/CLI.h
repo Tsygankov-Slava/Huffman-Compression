@@ -26,6 +26,7 @@ public:
 class CLI {
     int argc;
     char **argv;
+public:
     std::map<std::string, Flag> flags;
 
 public:

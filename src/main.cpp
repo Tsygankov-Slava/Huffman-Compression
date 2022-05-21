@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "CLI/CLI.h"
+#include "File/File.h"
 
 int main(int argc, char *argv[]) {
     auto cli = CLI(argc, argv)
@@ -17,5 +18,8 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
+    auto file = File(cli.flags.at("--in").value, cli.flags.at("--out").value);
+    file.readFile();
+    file.printFrequencyDictionary();
     return 0;
 }
