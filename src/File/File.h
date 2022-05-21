@@ -6,12 +6,14 @@
 #include <string>
 #include <vector>
 
-
+/**
+ * Класс производит работу с файлом и заполняет частотный словарь
+ */
 class File {
-    std::string pathIn;
-    std::string pathOut;
-    std::map<char, int> frequencyDictionary;
-    std::vector<std::pair<char, int>> frequencyDictionarySorted;
+    std::string pathIn; /** Переменная хранит путь к файлу, который надо сжать */
+    std::string pathOut; /** Переменная хранит путь к файлу, который получится на выходе */
+    std::map<char, int> frequencyDictionary; /** частотный словарь */
+    std::vector<std::pair<char, int>> frequencyDictionarySorted; /** отсортированный (по кол-ву символов) частотный словарь*/
 
 public:
     explicit File(std::string pathIn, std::string pathOut) : pathIn(std::move(pathIn)), pathOut(std::move(pathOut)){};
