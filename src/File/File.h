@@ -13,6 +13,7 @@ class File {
     std::string pathIn; /** Переменная хранит путь к файлу, который надо сжать */
     std::string pathOut; /** Переменная хранит путь к файлу, который получится на выходе */
     std::map<char, int> frequencyDictionary; /** частотный словарь */
+public:
     std::vector<std::pair<char, int>> frequencyDictionarySorted; /** отсортированный (по кол-ву символов) частотный словарь */
 
 public:

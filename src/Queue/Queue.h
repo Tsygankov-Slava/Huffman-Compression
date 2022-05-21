@@ -3,22 +3,27 @@
 #include <memory>
 #include <string>
 
-class Node {
+#include "../Tree/Tree.h"
+
+class NodeTree;
+
+class NodeQueue {
 public:
-    std::string symbol;
-    std::shared_ptr<Node> next = nullptr;
-    std::shared_ptr<Node> prev = nullptr;
+    std::shared_ptr<NodeTree> symbol;
+    std::shared_ptr<NodeQueue> next = nullptr;
+    std::shared_ptr<NodeQueue> prev = nullptr;
 
 public:
-    explicit Node(std::string symbol) : symbol(std::move(symbol)){};
+    explicit NodeQueue(std::shared_ptr<NodeTree> symbol) : symbol(std::move(symbol)){};
 };
 
 class Queue {
-    std::shared_ptr<Node> head = nullptr;
-    std::shared_ptr<Node> tail = nullptr;
+public:
+    std::shared_ptr<NodeQueue> head = nullptr;
+    std::shared_ptr<NodeQueue> tail = nullptr;
 
 public:
-    void push(const std::string &symbol);
+    void push(const std::shared_ptr<NodeTree> &symbol);
     void pop();
     int size();
     bool empty();

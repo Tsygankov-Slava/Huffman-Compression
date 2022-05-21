@@ -1,7 +1,7 @@
 #include "File.h"
 
 bool File::sortFunc(const std::pair<char, int> &a, const std::pair<char, int> &b) {
-    return a.second > b.second;
+    return a.second < b.second;
 }
 
 bool File::readFile() {
