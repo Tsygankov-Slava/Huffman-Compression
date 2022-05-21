@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "CLI/CLI.h"
 #include "File/File.h"
 
