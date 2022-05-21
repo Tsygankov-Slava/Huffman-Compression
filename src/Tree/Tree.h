@@ -8,6 +8,9 @@
 
 class Queue;
 
+/**
+ * Класс NodeTree описывает узел дерева
+ */
 class NodeTree {
 public:
     std::pair<char, int> symbol;
@@ -18,14 +21,23 @@ public:
         : symbol(std::move(symbol)), left(std::move(left)), right(std::move(right)){};
 };
 
+/*
+ * Класс Tree описывает дерево символов, которое построено на основе частотного словаря
+ */
 class Tree {
-    std::shared_ptr<Queue> queue = std::make_shared<Queue>();
+public:
     File file;
+    std::shared_ptr<Queue> queue = std::make_shared<Queue>();
     std::shared_ptr<NodeTree> head = nullptr;
+    std::map<char, std::string> symbolsCode;
 
 public:
     explicit Tree(File &file) : file(file){};
+    std::map<char, std::string> getSymbolsCode();
+    void printSymbolsCode();
+
+private:
     void fillQueue();
     void createNode();
-private:
+    void createSymbolsCode(const std::shared_ptr<NodeTree> &node, const std::string &code = "");
 };

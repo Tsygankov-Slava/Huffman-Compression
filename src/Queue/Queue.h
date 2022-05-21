@@ -26,5 +26,4 @@ public:
     void push(const std::shared_ptr<NodeTree> &symbol);
     void pop();
     int size();
-    bool empty();
 };

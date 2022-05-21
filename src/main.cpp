@@ -1,5 +1,4 @@
 #include "CLI/CLI.h"
-#include "Tree/Tree.h"
 #include "File/File.h"
 #include "Tree/Tree.h"
 
@@ -22,8 +21,10 @@ int main(int argc, char *argv[]) {
     file.readFile();
     file.printFrequencyDictionary();
 
+    std::cout << "-------\n";
+
     auto tree = Tree(file);
-    tree.fillQueue();
-    tree.createNode();
+    std::map<char, std::string> symbolsCode = tree.getSymbolsCode();
+    tree.printSymbolsCode();
     return 0;
 }

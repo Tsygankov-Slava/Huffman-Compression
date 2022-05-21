@@ -34,7 +34,3 @@ int Queue::size() {
     }
     return size;
 }
-
-bool Queue::empty() {
-    return size();
-}

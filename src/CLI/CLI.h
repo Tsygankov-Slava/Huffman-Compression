@@ -26,21 +26,20 @@ public:
 class CLI {
     int argc;
     char **argv;
-public:
-    std::map<std::string, Flag> flags;
 
 public:
+    std::map<std::string, Flag> flags;
     enum ParseState { WRONG,
                       EXIT,
                       OK };
-
-private:
-    ParseState parseFlags();
-    CLI::ParseState checkRequiredFlags();
-    CLI::ParseState checkFiles();
 
 public:
     explicit CLI(int argc, char *argv[]) : argc(argc), argv(argv){};
     CLI &flag(const std::string &name, bool requiredField = false, bool containsValue = false);
     ParseState parse();
+
+private:
+    ParseState parseFlags();
+    CLI::ParseState checkRequiredFlags();
+    CLI::ParseState checkFiles();
 };
