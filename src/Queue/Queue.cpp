@@ -1,7 +1,7 @@
 #include "Queue.h"
 
 void Queue::push(const std::string &symbol) {
-    Node *node = new Node(symbol);
+    std::shared_ptr<Node> node = std::make_shared<Node>(symbol);
     if (head == nullptr && tail == nullptr) {
         head = node;
         tail = node;
@@ -27,7 +27,7 @@ int Queue::size() {
         return 0;
     }
     int size = 1;
-    Node *root = tail;
+    std::shared_ptr<Node> root = tail;
     while (root != head) {
         ++size;
         root = root->next;
