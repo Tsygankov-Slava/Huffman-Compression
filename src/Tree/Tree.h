@@ -9,7 +9,7 @@
 class Queue;
 
 /**
- * Класс NodeTree описывает узел дерева
+ * The Node Tree class describes a tree node
  */
 class NodeTree {
 public:
@@ -22,7 +22,7 @@ public:
 };
 
 /*
- * Класс Tree описывает дерево символов, которое построено на основе частотного словаря
+ * The Tree class describes a symbol tree that is built on the basis of a frequency dictionary
  */
 class Tree {
 public:

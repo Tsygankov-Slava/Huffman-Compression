@@ -5,23 +5,23 @@
 #include <string>
 
 /**
- * Класс Flag описывает флаг, который передаёт нам пользователь
+ * The Flag class describes the flag that the user passes to us
  */
 class Flag {
 public:
-    std::string name;      /** Переменная хранит название флага */
-    bool isRequiredFlag;   /** Переменная, которая говорит, обязательно ли должен присутствовать данный флаг при запуске программы */
-    bool isContainsValue;  /** Переменная, которая говорит, должен ли флаг содержать значение */
-    std::string value;     /** Переменная хранит значение флага, которое добавлено после флага */
-    bool isPassed = false; /** Переменная, которая говорит, был ли введён данный флаг */
+    std::string name;      /** flag name*/
+    bool isRequiredFlag;   /** does this flag have to be present when the program starts */
+    bool isContainsValue;  /** should the flag contain a value */
+    std::string value;     /** the flag value that is added after the flag */
+    bool isPassed = false; /** has this flag been entered */
 
     Flag(std::string name, bool isRequiredFlag, bool isContainsValue) : name(std::move(name)), isRequiredFlag(isRequiredFlag), isContainsValue(isContainsValue){};
 };
 
 /**
- * Класс CLI описывает интерфейс командной строки
- * Он занимается чтением флагов и проверкой на валидность переданной информации
- * Все ошибки связанные с переданной информацией обрабатываются в этом классе
+ * The CLI class describes the command line interface
+ * He is engaged in reading flags and checking for the validity of the transmitted information
+ * All errors related to the transmitted information are handled in this class
  */
 class CLI {
     int argc;

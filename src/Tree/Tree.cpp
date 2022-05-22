@@ -1,7 +1,7 @@
 #include "Tree.h"
 
 /*
- * Функция fillQueue заполняет первоначальную очередь из узлов дерева
+ * The fillQueue function fills the initial queue from the nodes of the tree
  */
 void Tree::fillQueue() {
     for (const auto &map : frequencyDictionary.frequencyDictionarySorted) {
@@ -11,7 +11,7 @@ void Tree::fillQueue() {
 }
 
 /*
- * Функция createNode создаёт узлы для дерева в порядке очереди
+ * The createNode function creates nodes for the tree in the order of the queue
  */
 void Tree::createNode() {
     while (queue->size() != 1) {
@@ -28,7 +28,7 @@ void Tree::createNode() {
 }
 
 /*
- * Функция createSymbolsCode проходится по дереву и создаёт для каждого символа свой код
+ * The createSymbolsCode function goes through the tree and creates its own code for each character
  */
 void Tree::createSymbolsCode(const std::shared_ptr<NodeTree> &node, const std::string &code) {
     char symbol = node->symbol.first;

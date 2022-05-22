@@ -6,17 +6,18 @@
 #include <string>
 #include <vector>
 
+
 /**
- * Класс FrequencyDictionary производит работу с файлом и заполняет частотный словарь
+ * The Frequency Dictionary class works with the file and fills in the frequency dictionary
  */
 class FrequencyDictionary {
-    std::string pathIn;  /** Переменная хранит путь к файлу, который надо сжать */
-    std::string pathOut; /** Переменная хранит путь к файлу, который получится на выходе */
-    std::vector<std::string> lines;
-    std::map<char, int> frequencyDictionary; /** частотный словарь */
+    std::string pathIn;             /** the path to the file to compress */
+    std::string pathOut;            /** the path to the output file */
+    std::vector<std::string> lines; /** vector of file lines */
+    std::map<char, int> frequencyDictionary;
 
 public:
-    std::vector<std::pair<char, int>> frequencyDictionarySorted; /** отсортированный (по кол-ву символов) частотный словарь */
+    std::vector<std::pair<char, int>> frequencyDictionarySorted; /** sorted (by number of characters) frequency dictionary */
 
 public:
     explicit FrequencyDictionary(std::string pathIn, std::string pathOut)

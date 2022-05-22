@@ -2,10 +2,7 @@
 
 bool FrequencyDictionary::readData() {
     std::ifstream file(pathIn);
-    if (!file) {
-        std::cout << "Файл " << pathIn << " не найден. Посмотрите справочную информация (обратитесь с флагом --help).\n";
-        throw false;
-    }
+    file.exceptions(std::ifstream::badbit | std::ifstream::failbit);
     std::string line;
     while (getline(file, line)) {
         lines.push_back(line);

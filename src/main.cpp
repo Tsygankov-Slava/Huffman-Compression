@@ -24,9 +24,11 @@ int main(int argc, char *argv[]) {
         auto tree = Tree(frequencyDictionary);
         std::map<char, std::string> symbolsCode = tree.getSymbolsCode();
         tree.printSymbolsCode();
-    } catch (const bool &ex) {
+    } catch (const std::exception &ex) {
+        std::cout << ex.what() << "\n";
+        std::cout << "Файл " << cli.flags.at("--in").value << " не найден. Посмотрите справочную информация (обратитесь с флагом --help).\n";
         return 1;
-    };
+    }
 
     return 0;
 }

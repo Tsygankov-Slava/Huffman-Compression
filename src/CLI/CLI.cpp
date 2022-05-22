@@ -1,10 +1,10 @@
 #include "CLI.h"
 
 /**
- * Функция добавляет флаги в мапу flags
- * @param name - имя флага
- * @param isRequiredFlag - переменная обозначающая обязательный ли флаг или нет
- * @param isContainsValue - переменная обозначающая принимает ли флаг значение или нет
+ * The function adds flags to the flags map
+ * @param name - flag name
+ * @param isRequiredFlag - is the flag mandatory or not
+ * @param isContainsValue - does the flag take a value or not
  * @return
  */
 CLI &CLI::flag(const std::string &name, bool isRequiredFlag, bool isContainsValue) {
@@ -13,8 +13,8 @@ CLI &CLI::flag(const std::string &name, bool isRequiredFlag, bool isContainsValu
 }
 
 /**
- * Функция проверяющая вызвал ли пользователь все обязательные флаги или нет
- * Если пользователь вызвал все обязательные флаги, функция вернёт OK, иначе WRONG
+ * A function that checks whether the user has called all the required flags or not
+ * If the user has called all the required flags, the function will return OK, otherwise WRONG
  * @return
  */
 CLI::ParseState CLI::checkRequiredFlags() {
@@ -28,10 +28,10 @@ CLI::ParseState CLI::checkRequiredFlags() {
 }
 
 /**
- * Функция обрабатывает все переданные флаги и проверяет их на валидность
- * Если всё хорошо, функция вернёт OK
- * Если пользователь вызывает информационные флаги (например, --help), то функция вернёт EXIT
- * Если пользователь допустил какую-либо ошибку при вводе, то функция вернёт WRONG
+ * The function processes all passed flags and checks them for validity
+ * If everything is fine, the function will return OK
+ * If the user calls informational flags (for example, --help), the function returns EXIT
+ * If the user made any mistake while typing, the function will return WRONG
  * @return
  */
 CLI::ParseState CLI::parseFlags() {
@@ -85,8 +85,8 @@ CLI::ParseState CLI::parseFlags() {
 }
 
 /**
- * Функция проверяющая, что пользователь не ввёл одинаковые файлы в флаги --in и --out
- * Если пользователь ввёл одинаковые файлы, то функция вернёт WRONG, иначе OK
+ * A function that checks that the user has not entered the same files in the --in and --out flags
+ * If the user has entered the same files, the function will return WRONG, otherwise OK
  * @return
  */
 CLI::ParseState CLI::checkFiles() {
@@ -98,7 +98,7 @@ CLI::ParseState CLI::checkFiles() {
 }
 
 /**
- * Функция вызывающая приватные функции класса и обрабатывающая их вывод
+ * A function that calls private methods of a class and processes their output
  * @return
  */
 CLI::ParseState CLI::parse() {
