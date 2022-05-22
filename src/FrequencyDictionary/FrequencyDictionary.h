@@ -11,6 +11,7 @@
  * The Frequency Dictionary class works with the file and fills in the frequency dictionary
  */
 class FrequencyDictionary {
+public:
     std::string pathIn;             /** the path to the file to compress */
     std::string pathOut;            /** the path to the output file */
     std::vector<std::string> lines; /** vector of file lines */

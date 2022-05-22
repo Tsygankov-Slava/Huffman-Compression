@@ -7,7 +7,7 @@ bool FrequencyDictionary::readData() {
     }
     std::string line;
     while (getline(file, line)) {
-        lines.push_back(line);
+        lines.push_back(line + '\n');
     }
     return true;
 }
