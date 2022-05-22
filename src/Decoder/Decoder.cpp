@@ -4,10 +4,10 @@ void Decoder::readData() {
     file.open(path, std::ifstream::binary);
     unsigned char countSymbolsCode = 0;
     file.read(reinterpret_cast<char *>(&countSymbolsCode), sizeof countSymbolsCode);
-    std::cout << "Size: " << (int)countSymbolsCode << "\n";
+    std::cout << "Size: " << (int) countSymbolsCode << "\n";
 
     int i = 0;
-    while (i < (int)countSymbolsCode) {
+    while (i < (int) countSymbolsCode) {
         unsigned char symbol;
         std::string code;
         file.read(reinterpret_cast<char *>(&symbol), sizeof symbol);
@@ -18,8 +18,8 @@ void Decoder::readData() {
     }
     file.read(reinterpret_cast<char *>(&byteCount), sizeof byteCount);
     file.read(reinterpret_cast<char *>(&remains), sizeof remains);
-    std::cout << "byteCount: " << (int)byteCount << "\n";
-    std::cout << "remains: " << (int)remains << "\n";
+    std::cout << "byteCount: " << (int) byteCount << "\n";
+    std::cout << "remains: " << (int) remains << "\n";
 }
 
 void Decoder::decode() {
@@ -37,7 +37,7 @@ void Decoder::decode() {
         std::bitset<CHAR_BIT> b(byte);
         code += b.to_string().substr(CHAR_BIT - remains, CHAR_BIT);
     }
-    std::cout << code << "\n";
+    //std::cout << code << "\n";
 
     std::string symbolCode;
     for (int j = 0; j < code.size(); ++j) {
@@ -47,5 +47,7 @@ void Decoder::decode() {
             symbolCode = "";
         }
     }
-    std::cout << text;
+    //std::cout << text;
+    std::ofstream fileOut(path+".dec");
+    fileOut << text;
 }
