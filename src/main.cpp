@@ -1,15 +1,16 @@
 #include "CLI/CLI.h"
-#include "FrequencyDictionary/FrequencyDictionary.h"
-#include "Tree/Tree.h"
-#include "OutputFile/OutputFile.h"
 #include "Decoder/Decoder.h"
+#include "FrequencyDictionary/FrequencyDictionary.h"
+#include "OutputFile/OutputFile.h"
+#include "Tree/Tree.h"
 
 int main(int argc, char *argv[]) {
     auto cli = CLI(argc, argv)
                        .flag("--help")
                        .flag("--description")
                        .flag("--in", true, true)
-                       .flag("--out", true, true);
+                       .flag("--out", true, true)
+                       .flag("--dec", false, true);
 
     CLI::ParseState parseState = cli.parse();
     if (parseState == CLI::ParseState::WRONG) {
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]) {
         std::cout << "-------\n";
         auto outFile = OutputFile(frequencyDictionary, tree);
         auto decoder = Decoder(frequencyDictionary.pathOut);
-    } catch (const std::invalid_argument& error) {
+    } catch (const std::invalid_argument &error) {
         std::cout << error.what() << "\n";
         return 1;
     }

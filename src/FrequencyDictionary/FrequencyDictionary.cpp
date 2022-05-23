@@ -15,7 +15,9 @@ bool FrequencyDictionary::readData() {
 void FrequencyDictionary::buildDictionary() {
     for (auto const &line : lines) {
         for (auto const &symbol : line) {
-            frequencyDictionary[symbol]++;
+            if ((int) symbol > 31 || symbol == '\n') {
+                frequencyDictionary[symbol]++;
+            }
         }
     }
     frequencyDictionarySorted = {frequencyDictionary.begin(), frequencyDictionary.end()};
