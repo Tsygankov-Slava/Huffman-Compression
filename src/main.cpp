@@ -5,12 +5,16 @@
 #include "Tree/Tree.h"
 
 int main(int argc, char *argv[]) {
+/*    auto queue = Queue();
+    queue.push(std::make_shared<NodeTree>(std::make_pair('a', 1)));
+    queue.push(std::make_shared<NodeTree>(std::make_pair('b', 2)));
+    queue.push(std::make_shared<NodeTree>(std::make_pair('c', 3)));*/
     auto cli = CLI(argc, argv)
-                       .flag("--help")
-                       .flag("--description")
-                       .flag("--in", true, true)
-                       .flag("--out", true, true)
-                       .flag("--dec", false, true);
+            .flag("--help")
+            .flag("--description")
+            .flag("--in", true, true)
+            .flag("--out", true, true)
+            .flag("--dec", false, true);
 
     CLI::ParseState parseState = cli.parse();
     if (parseState == CLI::ParseState::WRONG) {

@@ -47,7 +47,7 @@ void Decoder::decode() {
             symbolCode = "";
         }
     }
-    //std::cout << text;
+    std::cout << text;
     std::ofstream fileOut(path+".dec");
     fileOut << text;
 }

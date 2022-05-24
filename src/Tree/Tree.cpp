@@ -41,8 +41,8 @@ void Tree::createSymbolsCode(const std::shared_ptr<NodeTree> &node, const std::s
 }
 
 void Tree::printSymbolsCode() {
-    for (const auto &code : symbolsCode) {
-        std::cout << code.first << " -> " << code.second << "\n";
+    for (const auto &[symbol, countSymbol] : symbolsCode) {
+        std::cout << symbol<< " -> " << countSymbol << "\n";
     }
 }
 
