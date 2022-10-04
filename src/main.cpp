@@ -4,40 +4,56 @@
 #include "OutputFile/OutputFile.h"
 #include "Tree/Tree.h"
 
+#include "../libs/cli.hpp"
+
+void encode(cli::FlagsType &parsedFlags);
+void decode(cli::FlagsType &parsedFlags);
+
 int main(int argc, char *argv[]) {
-/*    auto queue = Queue();
-    queue.push(std::make_shared<NodeTree>(std::make_pair('a', 1)));
-    queue.push(std::make_shared<NodeTree>(std::make_pair('b', 2)));
-    queue.push(std::make_shared<NodeTree>(std::make_pair('c', 3)));*/
-    auto cli = CLI(argc, argv)
-            .flag("--help")
-            .flag("--description")
-            .flag("--in", true, true)
-            .flag("--out", true, true)
-            .flag("--dec", false, true);
-
-    CLI::ParseState parseState = cli.parse();
-    if (parseState == CLI::ParseState::WRONG) {
-        return 1;
-    }
-    if (parseState == CLI::ParseState::EXIT) {
-        return 0;
-    }
-
+    auto cli = cli::Cli();
     try {
-        auto frequencyDictionary = FrequencyDictionary(cli.flags.at("--in").value, cli.flags.at("--out").value);
-        frequencyDictionary.print();
-        std::cout << "-------\n";
-        auto tree = Tree(frequencyDictionary);
-        std::map<char, std::string> symbolsCode = tree.getSymbolsCode();
-        tree.printSymbolsCode();
-        std::cout << "-------\n";
-        auto outFile = OutputFile(frequencyDictionary, tree);
-        auto decoder = Decoder(frequencyDictionary.pathOut);
+        cli.command("encode", "This is the command that starts encoding the file with the Huffman algorithm.", "",
+                    {
+                            cli::Flag("input", "i", "Input file to be encoded.", true, true),
+                            cli::Flag("output", "o", "Output file to be encoded. \n By default the compressed file will be written to the input file with the prefix \".enc\" at the end.", false, true),
+                            cli::Flag("steps", "s", "Print the information about encode (the execution steps)", false, false),
+                    },
+                    encode)
+                .command("decode", "This is the command that starts decoding the encoded file using the Huffman algorithm.", "",
+                         {
+                                 cli::Flag("input", "i", "Input file to be decoded", true, true),
+                                 cli::Flag("output", "o", "Output file to be decoded. \n By default the compressed file will be written to the input file with the prefix \".dec\" at the end.", false, true),
+                                 cli::Flag("steps", "s", "Print the information about decode (the execution steps)", false, false),
+                         },
+                         decode)
+                .parse(argc, argv);
     } catch (const std::invalid_argument &error) {
-        std::cout << error.what() << "\n";
-        return 1;
+        std::cout << error.what();
+        return 2;
     }
-
     return 0;
+}
+
+void encode(cli::FlagsType &parsedFlags) {
+    std::cout << "PROCESS...\n";
+    const std::string pathIn = parsedFlags.at("input").value;
+    const std::string pathOut = (parsedFlags.count("output")) ? parsedFlags.at("output").value : pathIn+".enc";
+    auto frequencyDictionary = FrequencyDictionary(pathIn, pathOut);
+    auto tree = Tree(frequencyDictionary);
+    std::map<char, std::string> symbolsCode = tree.getSymbolsCode();
+    if (parsedFlags.count("steps")) {
+        std::cout << "Count of the symbols:\n";
+        frequencyDictionary.print();
+        std::cout << "-------\n\n";
+        std::cout << "Code of the symbols:";
+        tree.printSymbolsCode();
+        std::cout << "-------\n\n";
+    }
+    auto outFile = OutputFile(frequencyDictionary, tree);
+}
+
+void decode(cli::FlagsType &parsedFlags) {
+    std::string pathIn = parsedFlags.at("input").value;
+    std::string pathOut = (parsedFlags.count("output")) ? parsedFlags.at("output").value : pathIn+".dec";
+    auto decoder = Decoder(pathIn, pathOut, parsedFlags.count("steps"));
 }

@@ -10,8 +10,6 @@ add_executable(Huffman_Compression
         src/FrequencyDictionary/FrequencyDictionary.cpp
         src/FrequencyDictionary/FrequencyDictionary.h
         src/Tree/Tree.cpp src/Tree/Tree.h
-        src/Queue/Queue.cpp
-        src/Queue/Queue.h
         src/OutputFile/OutputFile.cpp
         src/OutputFile/OutputFile.h
         src/Decoder/Decoder.cpp

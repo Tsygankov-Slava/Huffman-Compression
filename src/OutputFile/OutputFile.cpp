@@ -16,10 +16,8 @@ void OutputFile::writing() {
             textBin += tree.symbolsCode[symbol];
         }
     }
-    //std::cout << textBin << "\n";
     unsigned long byteCount = textBin.size() / CHAR_BIT;
     unsigned long remains = textBin.size() % CHAR_BIT;
-    std::cout << byteCount << " " << remains << "\n";
     file.write(reinterpret_cast<const char*>(&byteCount), sizeof byteCount);
     file.write(reinterpret_cast<const char*>(&remains), sizeof remains);
 

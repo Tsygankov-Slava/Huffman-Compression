@@ -2,9 +2,9 @@
 
 #include <map>
 #include <memory>
+#include <queue>
 
 #include "../FrequencyDictionary/FrequencyDictionary.h"
-#include "../Queue/Queue.h"
 
 class Queue;
 
@@ -27,7 +27,7 @@ public:
 class Tree {
 public:
     FrequencyDictionary frequencyDictionary;
-    std::shared_ptr<Queue> queue = std::make_shared<Queue>();
+    std::queue<std::shared_ptr<NodeTree>> queue;
     std::shared_ptr<NodeTree> head = nullptr;
     std::map<char, std::string> symbolsCode;
 

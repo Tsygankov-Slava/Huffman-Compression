@@ -21,8 +21,7 @@ public:
     std::vector<std::pair<char, int>> frequencyDictionarySorted; /** sorted (by number of characters) frequency dictionary */
 
 public:
-    explicit FrequencyDictionary(std::string pathIn, std::string pathOut)
-        : pathIn(std::move(pathIn)), pathOut(std::move(pathOut)) {
+    explicit FrequencyDictionary(std::string pathIn, std::string pathOut) : pathIn(std::move(pathIn)), pathOut(std::move(pathOut)) {
         readData();
         buildDictionary();
     };

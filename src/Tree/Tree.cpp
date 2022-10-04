@@ -6,7 +6,7 @@
 void Tree::fillQueue() {
     for (const auto &map : frequencyDictionary.frequencyDictionarySorted) {
         std::shared_ptr<NodeTree> node = std::make_shared<NodeTree>(map);
-        queue->push(node);
+        queue.push(node);
     }
 }
 
@@ -14,17 +14,17 @@ void Tree::fillQueue() {
  * The createNode function creates nodes for the tree in the order of the queue
  */
 void Tree::createNode() {
-    while (queue->size() != 1) {
-        std::shared_ptr<NodeTree> newNodeLeft = queue->head->symbol;
-        queue->pop();
-        std::shared_ptr<NodeTree> newNodeRight = queue->head->symbol;
-        queue->pop();
+    while (queue.size() != 1) {
+        std::shared_ptr<NodeTree> newNodeLeft = queue.front();
+        queue.pop();
+        std::shared_ptr<NodeTree> newNodeRight = queue.front();
+        queue.pop();
         std::shared_ptr<NodeTree> newNode =
                 std::make_shared<NodeTree>(std::make_pair('\0', newNodeLeft->symbol.second + newNodeRight->symbol.second),
                                            newNodeLeft, newNodeRight);
-        queue->push(newNode);
+        queue.push(newNode);
     }
-    head = queue->head->symbol;
+    head = queue.front();
 }
 
 /*
