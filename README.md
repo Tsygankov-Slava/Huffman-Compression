@@ -1,6 +1,9 @@
 # Huffman-Compression
 
-Huffman-Compression - это программа, которая умеет сжимать и разжимать файлы, используя алгоритм сжатия Хаффмана. Основа взаимодействия с программой реализована с помощью [`Command Line Interface`](https://github.com/Tsygankov-Slava/cli)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
+Huffman-Compression - это программа, которая умеет сжимать и разжимать файлы, используя алгоритм сжатия Хаффмана.   
+Основа взаимодействия с программой реализована с помощью [`Command Line Interface`](https://github.com/Tsygankov-Slava/cli)
 
 # Оглавление
 
